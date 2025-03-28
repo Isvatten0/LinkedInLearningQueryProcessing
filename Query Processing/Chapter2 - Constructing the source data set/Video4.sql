@@ -4,7 +4,7 @@
 -- Ami Levin 2020 -------------------
 -- .\Chapter2\Video4.sql ------------
 -------------------------------------
-
+-- Luke's Solution to the following question. 
 /*
 Animal vaccinations report.
 ---------------------------
@@ -20,3 +20,17 @@ Guidelines:
 Use the minimal number of tables required.
 Use the correct logical join types and force join order as needed.
 */
+
+SELECT A.Name, A.Species, A.Breed, A.Primary_Color, V.Vaccination_Time, V.Vaccine, P.First_Name, P.Last_Name, SA.Role
+FROM Animals AS A
+LEFT OUTER JOIN 
+  (
+  Vaccinations AS V
+  INNER JOIN Staff AS S 
+  ON V.Email = S.Email
+  INNER JOIN STAFF_ASSIGNMENTS AS SA
+  ON S.Email = SA.EMAIL
+  INNER JOIN PERSONS P
+  ON S.Email = P.Email
+  ) 
+  ON A.Name = V.Name AND A.Species = V.Species
