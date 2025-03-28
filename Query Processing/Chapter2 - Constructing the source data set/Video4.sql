@@ -26,8 +26,6 @@ FROM Animals AS A
 LEFT OUTER JOIN 
   (
   Vaccinations AS V
-  INNER JOIN Staff AS S 
-  ON V.Email = S.Email
   INNER JOIN STAFF_ASSIGNMENTS AS SA
   ON S.Email = SA.EMAIL
   INNER JOIN PERSONS P
