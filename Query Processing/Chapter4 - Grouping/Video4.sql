@@ -23,3 +23,12 @@ and the number of vaccinations this animal has received,
 Use the correct logical join types and force order if needed.
 Use the  correct logical group by expressions.
 */
+--Lukes Answer Below:
+
+SELECT A.Species, A.Name, MAX(A.Primary_Color) as Primary_Color, MAX(A.Breed) as Breed, Count(V.Vaccine) AS Count
+FROM Animals AS A
+LEFT OUTER JOIN Vaccinations AS V
+ON A.Name = V.Name AND A.Species = V.Species
+WHERE A.Species != 'Rabbit' AND (V.Vaccine != 'Rabies' OR V.Vaccine IS NULL)
+GROUP BY A.Species, A.Name
+HAVING  MAX(V.Vaccination_Time) < '20191001' OR MAX(V.Vaccination_Time) IS NULL
